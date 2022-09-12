@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const port = process.env.PORT || 3001;
+// const port = process.env.PORT || 3001;
 const db = require("./models");
 const loginRoutes = require("./routes/login_route");
 const registerRoutes = require("./routes/regsiter_route");
@@ -59,7 +59,7 @@ app.use(handleErrorMiddleware);
 
 db.sequelize.sync().then((req) => {
   console.log("DB Sync");
-  app.listen(process.env.PORT || 3001, () => {
-    console.log(`Server Started On Port ${port}`);
+  app.listen(3001, () => {
+    console.log(`Server Started On Port `);
   });
 });
