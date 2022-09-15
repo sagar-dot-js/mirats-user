@@ -1,6 +1,10 @@
 const express = require("express");
 const cors = require("cors");
+
 const app = express();
+app.set("view engine", "ejs");
+app.set("views", __dirname + "/views");
+app.engine("html", require("ejs").renderFile);
 // const port = process.env.PORT || 3001;
 const db = require("./models");
 const loginRoutes = require("./routes/login_route");
@@ -12,24 +16,6 @@ const authonticateUser = require("./routes/authoriseUser_route");
 const assingPortalAccess = require("./routes/portalAccessPermetion_route");
 app.use(express.json());
 app.use(cors());
-
-// const checkToken = async (req, res, next) => {
-//   let token = req.headers["authorization"];
-
-//   if (token) {
-//     const result = await Users.findOne({ where: { jwtToken: token } });
-//     if (token === result?.jwtToken) {
-//       console.log("Match");
-//       next();
-//     } else {
-//       res.send("Token is Match");
-//       console.log("Not Match");
-//     }
-//   } else {
-//     res.send("Header is not having token");
-//     console.log("Header is not having token");
-//   }
-// };
 
 app.get("/", (req, res) => {
   res.send("Server Is running");
@@ -60,6 +46,6 @@ app.use(handleErrorMiddleware);
 db.sequelize.sync().then((req) => {
   console.log("DB Sync");
   app.listen(3001, () => {
-    console.log(`Server Started On Port `);
+    console.log(`Server Started On Port 3001 `);
   });
 });

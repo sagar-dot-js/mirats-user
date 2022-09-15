@@ -2,10 +2,6 @@ module.exports = (sequelize, Datatype) => {
   const Users = sequelize.define(
     "Users",
     {
-      id: {
-        type: Datatype.INTEGER,
-        primaryKey: true,
-      },
       jwtToken: {
         type: Datatype.STRING,
       },
@@ -46,7 +42,7 @@ module.exports = (sequelize, Datatype) => {
     },
     {
       tableName: "Users",
-      initialAutoIncrement: 100000,
+      initialAutoIncrement: 100001,
     }
   );
 

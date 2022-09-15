@@ -1,6 +1,7 @@
 const { Users } = require("../models");
 const jwt = require("jsonwebtoken");
-var bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
+
 const handleRegister = async (req, res) => {
   if (req.body.email) {
     const result = await Users.findOne({ where: { email: req.body.email } });
@@ -12,7 +13,6 @@ const handleRegister = async (req, res) => {
         "qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghhjkluiopasdfghjklzxcvbnmqweruiopasdfghjklzxcvbnmqwertyuiopuiopasdfghjklzxcvbnmqwertyuiopasdfghhjklasdfghhjkltyuiopasdfghhjklfeffefefefggwf";
       const token = jwt.sign(
         {
-          id: req.body.id,
           bleazPortal: req.body.bleazPortal,
           jobportal: req.body.jobportal,
           accountPortal: req.body.accountPortal,

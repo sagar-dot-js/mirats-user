@@ -1,6 +1,7 @@
 const { Users, Login, Session } = require("../models");
 const jwt = require("jsonwebtoken");
-var bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
+
 const handleLogin = async (req, res, next) => {
   try {
     if (req.body.email) {
@@ -24,17 +25,18 @@ const handleLogin = async (req, res, next) => {
                         admin: result.admin,
                       },
                       key,
-
                       { expiresIn: "1m" }
                     );
                     Session.create({
                       user_id: result.id,
                       jwtToken: token,
                     });
+
                     res.send({
                       loginStatus: true,
                       jwtToken: token,
                     });
+
                     console.log("Login Successfully");
                   } else {
                     res.send("Invalid Username/Password");
